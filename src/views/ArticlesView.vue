@@ -1,39 +1,14 @@
 <template>
-  <div class="articles">
-    <h1>liste articles</h1>
-  </div>
+  <h2>A Child Component!</h2>
+  <article-list />
 </template>
 
 <script>
+import ArticleList from "../components/ArticleList.vue";
 export default {
-    data() {
-        return {
-            articles:[]
-        }
-    },
-    mounted(){
-      this.fetchArticles()
-    },
-    methods : {
-      async fetchARticles(){
-        let response = await fetch("https://api.blog.quidam.re/api/getArticles.php")
-          .then(reponse => response.json())
-          .catch(e => e)
-        if (articles instanceof Array) {
-          this.articles = articles;
-        }
-      },
-
-
-      // fetchArticles(){
-      //   fetch("https://api.blog.quidam.re/api/getArticles.php")
-      //   .then( (response) => {
-      //     console.log(response);
-      //   }).catch( (error) => {
-      //     console.warning(error);
-      //   });
-      // },
-    },
+  components: {
+    ArticleList,
+  },
 };
 </script>
 
