@@ -2,13 +2,13 @@
   <div class="articles">
     <h1>liste articles - Article view</h1>
     <div v-for="article in articles" :key="article.id">
-      <ArticleItem :article-item>
+      <ArticleItem :article="article" />
     </div>
   </div>
 </template>
 
 <script>
-import ArticleItem from "ArticleItem.vue";
+import ArticleItem from "./ArticleItem.vue";
 
 export default {
   data() {

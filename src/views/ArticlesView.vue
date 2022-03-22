@@ -1,6 +1,7 @@
 <template>
   <h2>A Child Component!</h2>
-  <article-list />
+
+  <ArticleList />
 </template>
 
 <script>

@@ -1,15 +1,16 @@
 <template>
-  <div>"Lapin"</div>
-  <div>{{ article.title }}</div>
-  <div>{{ article.content }}</div>
-  <div></div>
+  <div>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+  </div>
 </template>
 
 <script>
 export default {
-    props: {
-        
-    }
-}
+  props: {
+    article: Object,
+  },
+};
 </script>
 
+<style scoped></style>
