@@ -1,11 +1,11 @@
 <template>
   <div class="articles">
-    <h1>liste articles - Article view</h1>
-    <!-- <div v-for="article in articles" :key="article.id">
-      <ArticleItem :article="article" />
-    </div> -->
+    <h1>Article view</h1>
     <div>
-      <ArticleItem :article="store.article" />
+      <h2>
+        <p>{{ display_article.title }}</p>
+      </h2>
+      <p>{{ display_article.content }}</p>
     </div>
   </div>
 </template>
@@ -17,32 +17,19 @@ import { useCounterStore } from "../stores/articles_store.ts";
 export default {
   data() {
     return {
-      articles: [],
+      display_article: Object,
     };
   },
-  components: {
-    ArticleItem,
-  },
   mounted() {
-    console.log("lapin");
-    this.fetchArticles();
-  },
-  methods: {
-    async fetchArticles() {
-      let articles = await fetch(
-        "https://api.blog.quidam.re/api/getArticles.php"
-      )
-        .then((response) => response.json())
-        .catch((e) => e);
-      if (articles instanceof Array) {
-        console.log("thing");
-        this.articles = articles;
+    let ze_id = this.$route.params.article_id;
 
-        const store = useCounterStore();
-        store.article = this.articles[1];
-        console.log(store.articles);
-      }
-    },
+    const store = useCounterStore();
+    let nos_articles = store.articles;
+    let article_a_montrer = nos_articles.find(
+      (element) => element.id === ze_id
+    );
+
+    this.display_article = article_a_montrer;
   },
 };
 </script>
