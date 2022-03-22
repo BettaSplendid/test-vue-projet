@@ -27,6 +27,11 @@ const router = createRouter({
       name: "article",
       component: () => import("../views/SingleArticle.vue"),
     },
+    {
+      path: "/article/add",
+      name: "add_article",
+      component: () => import("../views/AddArticleView.vue"),
+    },
   ],
 });
 
