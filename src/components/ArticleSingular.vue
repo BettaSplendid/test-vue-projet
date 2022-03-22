@@ -1,8 +1,11 @@
 <template>
   <div class="articles">
     <h1>liste articles - Article view</h1>
-    <div v-for="article in articles" :key="article.id">
+    <!-- <div v-for="article in articles" :key="article.id">
       <ArticleItem :article="article" />
+    </div> -->
+    <div>
+      <ArticleItem :article="store.article" />
     </div>
   </div>
 </template>
@@ -36,7 +39,7 @@ export default {
         this.articles = articles;
 
         const store = useCounterStore();
-        store.articles = articles;
+        store.article = this.articles[1];
         console.log(store.articles);
       }
     },
