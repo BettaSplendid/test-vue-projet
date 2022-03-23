@@ -2,7 +2,7 @@
   <div class="about">
     <h1>This is an about page</h1>
     <form @submit.prevent="handleSubmit">
-        <p>Message is: {{ user.categorie }}</p>
+      <p>Message is: {{ user.categorie }}</p>
       <input
         type="text"
         v-model="user.categorie"
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -51,25 +52,26 @@ export default {
   methods: {
     async handleSubmit() {
       console.log("handle");
-      //   console.log(this.user);
-      //   console.log(this.user.title);
 
-      let laform = new FormData;
-      laform.append("categorie", this.user.categorie);
+      let laform = new FormData();
       laform.append("title", this.user.title);
       laform.append("content", this.user.content);
       laform.append("user_id", this.user.user_id);
+      laform.append("categorie", this.user.categorie);
       console.log({ laform });
+
       let response = await fetch(
         "https://api.blog.quidam.re/api/postArticle.php",
         {
           method: "POST",
-          body: JSON.stringify(laform),
+          body: laform,
         }
-      )
-        .then((r) => r.json())
-        .catch();
-      console.log(response);
+      ).then((res) => res.json()).catch((err) => err)
+
+      if (response.message === "") {
+        this.notification = "Article ajouter avec succès";
+        this.new_article = response.article_id;
+      }
     },
   },
 };

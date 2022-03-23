@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import ArticleItem from "./ArticleItem.vue";
 import { useCounterStore } from "../stores/articles_store.ts";
 
 export default {
