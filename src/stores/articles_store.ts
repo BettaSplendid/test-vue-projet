@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useCounterStore = defineStore({
+export const useArticleStore = defineStore({
   id: "article_store",
   state: () => ({
     article: {},

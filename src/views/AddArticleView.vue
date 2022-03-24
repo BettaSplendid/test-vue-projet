@@ -1,12 +1,11 @@
 <template>
   <div>
-      Vous êtes dans radio : AddArticleView.vue
-      <AddArticle @handleSubmit="handleSubmit" :user="user" />
+    Vous êtes dans radio : AddArticleView.vue
+    <AddArticle @handleSubmit="handleSubmit" :user="user" />
   </div>
 </template>
 
 <script>
-
 import AddArticle from "../components/AddArticle.vue";
 export default {
   data() {
@@ -39,7 +38,9 @@ export default {
           method: "POST",
           body: laform,
         }
-      ).then((res) => res.json()).catch((err) => err)
+      )
+        .then((res) => res.json())
+        .catch((err) => err);
 
       if (response.message === "") {
         this.notification = "Article ajouter avec succès";

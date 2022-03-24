@@ -9,42 +9,31 @@
 
 <script setup>
 import ArticleItem from "./ArticleItem.vue";
-import { useCounterStore } from "../stores/articles_store.ts";
-
+import { useArticleStore } from "../stores/articles_store.ts";
 import { ref, onMounted } from "vue";
-import { defineAsyncComponent } from "vue";
+import { limport } from "./export_api.js";
 
 const articles = ref(0);
-
-const TestTest = defineAsyncComponent(() => {
-  return new Promise((resolve, reject) => {
-    // ...load component from server
-    resolve(/* loaded component */);
-  });
+const store = useArticleStore();
+onMounted(() => {
+  console.log("On mounted");
+  fetchArticles();
 });
 
 async function fetchArticles() {
-  console.log("cool!");
+  console.log("fetchArticles!");
   console.log(articles);
-  let collected_articles = await fetch(
-    "https://api.blog.quidam.re/api/getArticles.php"
-  )
-    .then((response) => response.json())
-    .catch((e) => e);
+  let collected_articles = await limport();
+  collected_articles = store.articles;
   if (collected_articles instanceof Array) {
     console.log("Collected articles check");
     articles.value = collected_articles;
   }
 
-  const store = useCounterStore();
   store.articles = collected_articles;
   console.log(store.articles);
+  console.log(collected_articles[0]);
 }
-
-onMounted(() => {
-  console.log("lapin");
-  fetchArticles();
-});
 
 // function
 
@@ -71,7 +60,7 @@ onMounted(() => {
 //         console.log("thing");
 //         this.articles = articles;
 
-//         const store = useCounterStore();
+//         const store = useArticleStore();
 //         store.articles = articles;
 //         console.log(store.articles);
 //       }
@@ -79,5 +68,3 @@ onMounted(() => {
 //   },
 // };
 </script>
-
-
