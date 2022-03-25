@@ -2,7 +2,7 @@
   <div class="articles">
     <h1>liste articles - Article view</h1>
     <div v-for="article in articles" :key="article.id">
-      <ArticleItem :article="article" id=rand() />
+      <ArticleItem :article="article" id="rand()" />
     </div>
   </div>
 </template>
