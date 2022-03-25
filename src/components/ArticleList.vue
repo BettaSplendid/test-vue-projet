@@ -2,7 +2,7 @@
   <div class="articles">
     <h1>liste articles - Article view</h1>
     <div v-for="article in articles" :key="article.id">
-      <ArticleItem :article="article" />
+      <ArticleItem :article="article" id=rand() />
     </div>
   </div>
 </template>
@@ -35,36 +35,21 @@ async function fetchArticles() {
   console.log(collected_articles[0]);
 }
 
-// function
-
-//   data() {
-//     return {
-//       articles: [],
-//     };
-//   },
-//   components: {
-//     ArticleItem,
-//   },
-//   mounted() {
-//     console.log("lapin");
-//     this.fetchArticles();
-//   },
-//   methods: {
-//     async fetchArticles() {
-//       let articles = await fetch(
-//         "https://api.blog.quidam.re/api/getArticles.php"
-//       )
-//         .then((response) => response.json())
-//         .catch((e) => e);
-//       if (articles instanceof Array) {
-//         console.log("thing");
-//         this.articles = articles;
-
-//         const store = useArticleStore();
-//         store.articles = articles;
-//         console.log(store.articles);
-//       }
-//     },
-//   },
-// };
+function create_template_ok() {
+  var p = document.createElement("p");
+  document.body.appendChild(p);
+}
 </script>
+
+<style>
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
